@@ -73,13 +73,16 @@ function createEditTileSubmitCallback() {
 	addOrEditTile(elem,type,val);
 	
 	if(type == "s") {
-		spawns[0] = cur_id;
+		spawns.push(cur_id);
 		
 		if(dir) {
-			alert("Dir: "+dir);
 			newWp = $('#tile-'+getTileInDirection(cur_x,cur_y,dir));
 			addOrEditTile(newWp,"w",dir);
 		}
+	}
+	
+	if(type == "g") {
+		goals.push(cur_id);
 	}
 	
 	resetEditTileForm();
@@ -160,20 +163,30 @@ function selectTypeCallback(elem) {
 	val = $(elem).val();
 	
 	if(val == "") {
-		$("#grid-tile-value").attr('disabled','');
-		$("#grid-tile-value").html("");
+		resetEditTileForm();
 	}
 	
-	if(val == "s" || val == "g") {
-		$("#grid-tile-value").removeAttr('disabled');
-		$("#grid-tile-value").html("<option value=\"01\">1</option><option value=\"02\">2</option><option value=\"03\">3</option><option value=\"04\">4</option><option value=\"05\">5</option>");
-		if(val == "s") {
-			addDefaultDirectionDropdown();
+	if(val == "g") {
+		html = "";
+		for(var i = 0; i < spawns.length; i++) {
+			html += "<option value=\"" + (i+1) + "\">"+(i+1)+"</option>";
 		}
+		$("#grid-tile-value-list").show();
+		$("#grid-tile-value").html(html);
+	}
+	
+	if(val == "s") {
+		html = "";
+		for(var i = 0; i <= spawns.length; i++) {
+			html += "<option value=\"" + (i+1) + "\">"+(i+1)+"</option>";
+		}
+		$("#grid-tile-value").html(html);
+		$("#grid-tile-value-list").show();
+		addDefaultDirectionDropdown();
 	}
 	
 	if(val == "w") {
-		$("#grid-tile-value").removeAttr('disabled');
+		$("#grid-tile-value-list").show();
 		$("#grid-tile-value").html("<option value=\"n\">Up</option><option value=\"e\">Right</option><option value=\"s\">Down</option><option value=\"w\">Left</option>");
 	}
 }
@@ -202,12 +215,14 @@ function addDefaultDirectionDropdown() {
 	}
 	
 	$("#grid-tile-direction").html(html);
-	$("#default-direction-list").show();
+	$("#grid-default-direction-list").show();
 }
 
 function resetEditTileForm() {
-	$("#default-direction-list").hide();
+	$("#grid-default-direction-list").hide();
 	$("#grid-tile-direction").html("");
+	
+	$("#grid-tile-value-list").hide();
 	$("#grid-tile-value").html("");
 }
 

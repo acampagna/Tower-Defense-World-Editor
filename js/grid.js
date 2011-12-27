@@ -1,5 +1,6 @@
 var grid = Array();
 var spawns = Array();
+var goals = Array();
 var cur_id;
 var cur_x;
 var cur_y;

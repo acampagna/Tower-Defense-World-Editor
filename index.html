@@ -1,0 +1,146 @@
+<!doctype html>
+
+<head id="www-sitename-com" data-template-set="html5-reset">
+
+	<meta charset="utf-8">
+	
+	<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title></title>
+	
+	<meta name="title" content="">
+	<meta name="description" content="">
+	<!-- Google will often use this as its description of your page/site. Make it good. -->
+	
+	<meta name="google-site-verification" content="">
+	<!-- Speaking of Google, don't forget to set your site up: http://google.com/webmasters -->
+	
+	<meta name="author" content="Your Name Here">
+	<meta name="Copyright" content="Copyright Your Name Here 2011. All Rights Reserved.">
+
+	<!-- Dublin Core Metadata : http://dublincore.org/ -->
+	<meta name="DC.title" content="Project Name">
+	<meta name="DC.subject" content="What you're about.">
+	<meta name="DC.creator" content="Who made this site.">
+
+	<!-- <link rel="shortcut icon" href="img/favicon.ico"> -->
+	<!-- <link rel="apple-touch-icon" href="img/apple-touch-icon.png"> -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.8.16.custom.css">
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+
+</head>
+
+<body>
+<div class="wrapper">
+
+	<header>
+		<nav></nav>
+	</header>
+	
+	<div id="world-editor">
+		<div id="world-editor-toolbar">
+		</div>
+		
+		<div id="world-editor-screen">
+			<div id="world-editor-grid">
+			
+			</div>
+		</div>
+	</div>
+	
+	<div><input type="button" id="generate-world" value="Generate!"></div>
+	
+	<footer
+		<p><small>&copy; Copyright Anthony Campagna 2011. All Rights Reserved.</small></p>
+	</footer>
+
+</div>
+
+<!-- Dialog Windows -->
+
+<div class="hidden" id="dialog-alert" title="">
+</div>
+
+<div class="hidden" id="dialog-create-world" title="Edit Tile">
+<form id="create-world-form">
+	<fieldset>
+		<legend>World Size</legend>
+		
+		<ol>
+			<li>
+				<label for="world-width">Width</label>
+				<select name="world-width" id="world-width">
+					<option>1</option><option>2</option>
+					<option>3</option><option>4</option>
+					<option>5</option><option>6</option>
+					<option>7</option><option>8</option>
+					<option>9</option><option>10</option>
+					<option>11</option><option>12</option>
+					<option>13</option><option>14</option>
+					<option SELECTED>15</option><option>16</option>
+					<option>17</option><option>18</option>
+					<option>19</option><option>20</option>
+					<option>21</option><option>22</option>
+					<option>23</option><option>24</option>
+					<option>25</option><option>26</option>
+					<option>27</option><option>28</option>
+					<option>29</option><option>30</option>
+				</select>
+			</li>
+			<li>
+				<label for="world-height">Height</label>
+				<select name="world-height" id="world-height">
+					<option>1</option><option>2</option>
+					<option>3</option><option>4</option>
+					<option>5</option><option>6</option>
+					<option>7</option><option>8</option>
+					<option>9</option><option SELECTED>10</option>
+					<option>11</option><option>12</option>
+					<option>13</option><option>14</option>
+					<option>15</option><option>16</option>
+					<option>17</option><option>18</option>
+					<option>19</option><option>20</option>
+				</select>
+			</li>
+		</ol>
+	</fieldset>
+</form>
+</div>
+
+<div class="hidden" id="dialog-edit-grid-tile" title="Create World">
+<form id="edit-grid-tile-form">
+	<div id="edit-grid-tile-info">
+		<div id="edit-grid-tile-info-id"></div>
+		<div id="edit-grid-tile-info-x"></div>
+		<div id="edit-grid-tile-info-y"></div>
+	</div>
+	
+	<fieldset>
+		<legend>Tile Options</legend>
+		
+		<ol>
+			<li>
+				<label for="grid-tile-type">Tile Type: </label>
+				<select name="grid-tile-type" id="grid-tile-type">
+				</select>
+			</li>
+			<li>
+				<label for="grid-tile-value">Tile Value: </label>
+				<select name="grid-tile-value" id="grid-tile-value" disabled>
+				</select>
+			</li>
+		</ol>
+	</fieldset>
+</form>
+</div>
+
+<script src="js/grid.js"></script>
+<script src="js/common.js"></script>
+<script src="js/events.js"></script>
+
+</body>
+</html>

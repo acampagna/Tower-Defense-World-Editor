@@ -152,12 +152,12 @@ form ol {
 
 #world-editor-grid { width: 800px; height: 400px; overflow: auto; margin: 0 auto; margin-top: 20px; }
 #world-editor-grid table { display: block; margin: 0 auto;}
-#world-editor-grid table td { background-color: #fff; width: 32px; height: 32px; border: 1px solid #aaa; }
-#world-editor-grid table td.active { background-color: #FEFFD4; }
+#world-editor-grid table td { background-color: #fff; width: 32px; height: 32px; border-top: 1px solid #1d4267; border-left: 1px solid #1d4267; border-right: 1px solid #12314e; border-bottom: 1px solid #12314e;}
+#world-editor-grid table td.active {  }
 
 /*Tile*/
 #edit-grid-tile-info { margin-bottom: 10px; }
-.grid-tile { color: #ddd; font-size: 11px; text-align: center; vertical-align: middle;}
+.grid-tile { color: #ddd; font-size: 10px; text-align: center; vertical-align: middle;}
 
 
 

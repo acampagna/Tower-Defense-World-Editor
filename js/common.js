@@ -2,7 +2,7 @@ $(document).ready(function() {
 	openCreateWorldDialog();
 	
 	$("#grid-tile-type").change(function() {
-		populateTileTypeValues(this);
+		selectTypeCallback(this);
 	});
 	
 	$("#generate-world").click(function() {
@@ -68,15 +68,27 @@ function createEditTileSubmitCallback() {
 	elem = $("#tile-"+cur_id);
 	type = $('#grid-tile-type').val();
 	val = $('#grid-tile-value').val();
+	dir = $('#grid-tile-direction').val();
 	
-	elem.data('type',type);
-	elem.data('value',val);
+	addOrEditTile(elem,type,val);
 	
 	if(type == "s") {
 		spawns[0] = cur_id;
+		
+		if(dir) {
+			alert("Dir: "+dir);
+			newWp = $('#tile-'+getTileInDirection(cur_x,cur_y,dir));
+			addOrEditTile(newWp,"w",dir);
+		}
 	}
 	
-	elem.html(type + ":" + val);
+	resetEditTileForm();
+}
+
+function addOrEditTile(elem,type,value) {
+	elem.data('type',type);
+	elem.data('value',value);
+	elem.html(type + ":" + value);
 }
 
 function generateWorld() {
@@ -144,7 +156,7 @@ function populateTileTypes(edge) {
 	
 }
 
-function populateTileTypeValues(elem) {
+function selectTypeCallback(elem) {
 	val = $(elem).val();
 	
 	if(val == "") {
@@ -155,12 +167,48 @@ function populateTileTypeValues(elem) {
 	if(val == "s" || val == "g") {
 		$("#grid-tile-value").removeAttr('disabled');
 		$("#grid-tile-value").html("<option value=\"01\">1</option><option value=\"02\">2</option><option value=\"03\">3</option><option value=\"04\">4</option><option value=\"05\">5</option>");
+		if(val == "s") {
+			addDefaultDirectionDropdown();
+		}
 	}
 	
 	if(val == "w") {
 		$("#grid-tile-value").removeAttr('disabled');
 		$("#grid-tile-value").html("<option value=\"n\">Up</option><option value=\"e\">Right</option><option value=\"s\">Down</option><option value=\"w\">Left</option>");
 	}
+}
+
+function addDefaultDirectionDropdown() {
+	html = "";
+	
+	adjTiles = findAdjacentTiles(cur_x,cur_y);
+	for (var i = 0; i < adjTiles.length; i++) {
+		if(adjTiles[i]) {
+			switch(i) {
+				case 0:
+				  html += "<option value=\"n\">Up</option>";
+				  break;
+				case 1:
+				  html += "<option value=\"e\">Right</option>";
+				  break;
+				case 2:
+				  html += "<option value=\"s\">Down</option>";
+				  break;
+				case 3:
+				  html += "<option value=\"w\">Left</option>";
+				  break;
+			}
+		}
+	}
+	
+	$("#grid-tile-direction").html(html);
+	$("#default-direction-list").show();
+}
+
+function resetEditTileForm() {
+	$("#default-direction-list").hide();
+	$("#grid-tile-direction").html("");
+	$("#grid-tile-value").html("");
 }
 
 function setGridEvents() {

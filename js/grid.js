@@ -126,7 +126,11 @@ function exportGridToJavaArray() {
 	exp = "{";
 	i = 0;
 	for(j=0;j<grid_height;j++) {
-		exp += "{";
+		if(j==0) {
+			exp += "{";
+		} else {
+			exp += ",{";
+		}
 		for(k=0;k<grid_width;k++) {
 			i++;
 			if(k==0) {
@@ -135,13 +139,38 @@ function exportGridToJavaArray() {
 				exp += ",\""+$('#tile-'+i).html()+"\"";
 			}
 		}
-		exp += "},";
+		exp += "}";
 	}
 	exp += "}";
 	
 	openAlertDialog("Export",exp);
 }
 
-
-
+function getTileInDirection(x,y,dir) {
+	tile = false;
+	switch(dir) {
+		case 'up':
+		case 0:
+		case 'n':
+		  tile = getIdByCoords(x,y-1);
+		  break;
+		case 'right':
+		case 1:
+		case 'e':
+		  tile = getIdByCoords(x+1,y);
+		  break;
+		case 'down':
+		case 2:
+		case 's':
+		  tile = getIdByCoords(x,y+1);
+		  break;
+		case 'left':
+		case 3:
+		case 'w':
+		  tile = getIdByCoords(x-1,y);
+		  break;
+	}
+	
+	return tile;
+}
 

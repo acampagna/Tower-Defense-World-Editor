@@ -1,0 +1,1 @@
+This is the html/js editor for the Tower Defense game. Currently it only handles building the world but it will likely include editing towers, card, waves, and enemies in the future.

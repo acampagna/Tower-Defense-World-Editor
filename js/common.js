@@ -147,8 +147,7 @@ function generateGrid(width,height) {
 
 function populateTileTypes(edge) {	
 	elem_html = "<option value=\"\">Set Type</option>\
-		<option value=\"w\">Waypoint</option>\
-		<option value=\"d\">Doodad</option>";
+		<option value=\"w\">Waypoint</option>";
 		
 	if(edge) {
 		elem_html += "<option value=\"s\">Spawn</option>\

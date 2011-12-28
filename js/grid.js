@@ -124,27 +124,38 @@ function turnTileIntoPath(id) {
 }
 
 function exportGridToJavaArray() {
+	expRaw = "{";
 	exp = "{";
 	i = 0;
 	for(j=0;j<grid_height;j++) {
 		if(j==0) {
+			expRaw += "{";
 			exp += "{";
 		} else {
+			expRaw += ",{";
 			exp += ",{";
 		}
 		for(k=0;k<grid_width;k++) {
 			i++;
-			if(k==0) {
-				exp += "\""+$('#tile-'+i).html()+"\"";
-			} else {
-				exp += ",\""+$('#tile-'+i).html()+"\"";
+			if(k!=0) {
+				expRaw += ",";
+				exp += ",";
 			}
+			if($('#tile-'+i).html() == "") {
+				exp += "0";
+			} else {
+				exp += "1";
+			}
+			expRaw += "\""+$('#tile-'+i).html()+"\"";
 		}
+		expRaw += "}";
 		exp += "}";
 	}
+	expRaw += "}";
 	exp += "}";
 	
-	openAlertDialog("Export",exp);
+	openAlertDialog("Raw Export",expRaw);
+	//openAlertDialog("Tile Export",exp);
 }
 
 function getTileInDirection(x,y,dir) {
